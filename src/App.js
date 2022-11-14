@@ -1,8 +1,5 @@
-import "./App.css";
-import Header from "./components/hero-box/Header";
-
 function App() {
-  return <Header />;
+  return <div></div>;
 }
 
 export default App;
