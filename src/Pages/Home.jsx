@@ -8,10 +8,10 @@ const Home = () => {
     <Fragment>
       <Main />
       <List title="topRated" url={requests.topRated} />
-      {/*      <List title="popular" url={requests.popular} />
+      <List title="popular" url={requests.popular} />
       <List title="trending" url={requests.trending} />
       <List title="upComing" url={requests.upComing} />
-      <List title="latest" url={requests.latest} /> */}
+      <List title="latest" url={requests.latest} />
     </Fragment>
   );
 };
