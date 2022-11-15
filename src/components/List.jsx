@@ -15,7 +15,10 @@ const List = ({ title, url }) => {
     <Fragment>
       <h1 className="text-white uppercase text-xl p-4">{title}</h1>
       <div className="flex items-center relative">
-        <div id={"slider"}>
+        <div
+          id={"slider"}
+          className="overflow-x-scroll scroll-smooth whitespace-nowrap"
+        >
           {movies?.map((movie, id) => {
             return (
               <div className="w-[240px] inline-block cursor-pointer relative p-1">
