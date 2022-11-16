@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Fragment, useEffect, useState } from "react";
-import { imgBase } from "../Utils/RequestURL";
+import MovieCart from "./MovieCart";
 
 const List = ({ title, url }) => {
   const [movies, setMovies] = useState([]);
@@ -17,17 +17,10 @@ const List = ({ title, url }) => {
       <div className="flex items-center relative">
         <div
           id={"slider"}
-          className="overflow-x-scroll scroll-smooth whitespace-nowrap"
+          className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
           {movies?.map((movie, id) => {
-            return (
-              <div className="w-[240px] inline-block cursor-pointer relative p-1">
-                <img
-                  src={`${imgBase}${movie.backdrop_path}`}
-                  alt={movie.title}
-                />
-              </div>
-            );
+            return <MovieCart key={id} movie={movie} />;
           })}
         </div>
       </div>

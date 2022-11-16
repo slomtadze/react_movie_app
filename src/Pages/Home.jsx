@@ -11,7 +11,6 @@ const Home = () => {
       <List title="popular" url={requests.popular} />
       <List title="trending" url={requests.trending} />
       <List title="upComing" url={requests.upComing} />
-      <List title="latest" url={requests.latest} />
     </Fragment>
   );
 };
