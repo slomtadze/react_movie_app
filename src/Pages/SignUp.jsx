@@ -1,5 +1,7 @@
+import SignWrapper from "../Layout/SignIn/SignWrapper";
+
 const SignUp = () => {
-  return <div>SignUp</div>;
+  return <SignWrapper></SignWrapper>;
 };
 
 export default SignUp;
