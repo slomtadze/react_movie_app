@@ -7,10 +7,10 @@ const Home = () => {
   return (
     <Fragment>
       <Main />
-      <List id={1} title="topRated" url={requests.topRated} />
-      <List id={2} title="popular" url={requests.popular} />
-      <List id={3} title="trending" url={requests.trending} />
-      <List id={4} title="upComing" url={requests.upComing} />
+      <List id={"1"} title="topRated" url={requests.topRated} />
+      <List id={"2"} title="popular" url={requests.popular} />
+      <List id={"3"} title="trending" url={requests.trending} />
+      <List id={"4"} title="upComing" url={requests.upComing} />
     </Fragment>
   );
 };

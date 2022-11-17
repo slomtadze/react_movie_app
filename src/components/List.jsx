@@ -35,7 +35,7 @@ const List = ({ title, url, id }) => {
         />
         <div
           id={"slider" + id}
-          className="w-full h-full whitespace-nowrap overflow-none scrollbar-hide scroll-smooth scrollbar-hide relative"
+          className="w-full h-full whitespace-nowrap overflow-auto scrollbar-hide scroll-smooth scrollbar-hide relative"
         >
           {movies?.map((movie, id) => {
             return <MovieCart key={id} movie={movie} />;
