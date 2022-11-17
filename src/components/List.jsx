@@ -6,7 +6,7 @@ import {
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
 
-const List = ({ title, url }) => {
+const List = ({ title, url, id }) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -15,6 +15,15 @@ const List = ({ title, url }) => {
     });
   }, [url]);
 
+  const slideLeft = () => {
+    var slider = document.getElementById("slider" + id);
+    slider.scrollLeft = slider.scrollLeft - 500;
+  };
+  const slideRight = () => {
+    var slider = document.getElementById("slider" + id);
+    slider.scrollLeft = slider.scrollLeft + 500;
+  };
+
   return (
     <Fragment>
       <h1 className="text-white uppercase text-xl p-4">{title}</h1>
@@ -22,9 +31,10 @@ const List = ({ title, url }) => {
         <BsFillArrowLeftCircleFill
           className="absolute top-50 left-5 z-50 cursor-pointer text-white opacity-50 hidden hover:opacity-100 group-hover:block "
           size={40}
+          onClick={slideLeft}
         />
         <div
-          id={"slider"}
+          id={"slider" + id}
           className="w-full h-full whitespace-nowrap overflow-none scrollbar-hide scroll-smooth scrollbar-hide relative"
         >
           {movies?.map((movie, id) => {
@@ -34,6 +44,7 @@ const List = ({ title, url }) => {
         <BsFillArrowRightCircleFill
           className="absolute top-50 right-5 z-50 cursor-pointer text-white opacity-50 hidden hover:opacity-100 group-hover:block "
           size={40}
+          onClick={slideRight}
         />
       </div>
     </Fragment>
