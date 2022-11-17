@@ -1,7 +1,7 @@
 import SignWrapper from "../Layout/SignIn/SignWrapper";
 
 const SignIn = () => {
-  return <SignWrapper />;
+  return <SignWrapper></SignWrapper>;
 };
 
 export default SignIn;
