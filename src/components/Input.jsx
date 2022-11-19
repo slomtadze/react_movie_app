@@ -1,16 +1,24 @@
+import { ErrorMessage, Field } from "formik";
+
 const Input = ({ type, id, label }) => {
   return (
     <div className="font-mono text-white flex flex-col justify-center align-start">
       <label className="font-mono mb-0.5" htmlFor={id}>
         {label}
       </label>
-      <input
+      <Field
         className="text-black outline-none rounded px-4 py-[4px] mb-2"
         type={type}
         name={id}
         id={id}
         placeholder={label}
-      ></input>
+      ></Field>
+      <ErrorMessage
+        name={id}
+        render={(errorMsg) => (
+          <span className="text-sm text-red-500">{errorMsg}</span>
+        )}
+      />
     </div>
   );
 };

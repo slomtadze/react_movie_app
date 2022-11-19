@@ -19,18 +19,6 @@ const SignUp = () => {
         <div className="pb-2">
           <Button title="Confirm" type="submit" />
           <Button title="Cancel" type="button" onClick={() => navigate("/")} />
-          {/*  <button
-            className="text-white text-sm  bg-blue-500 mt-6 mr-2 px-4 py-2 rounded-lg hover:bg-blue-800 transition:duration-400 "
-            type="submit"
-          >
-            Confirm
-          </button>
-          <button
-            className="text-white text-sm  bg-blue-500 mt-6 mr-2 px-4 py-2 rounded-lg hover:bg-blue-800 transition:duration-400 "
-            onClick={() => navigate("/")}
-          >
-            Cancel
-          </button> */}
         </div>
 
         <p className="mt-2 text-gray-900">
