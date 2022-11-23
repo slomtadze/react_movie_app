@@ -4,21 +4,47 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import Button from "../Layout/SignIn/Button";
 import SignWrapper from "../Layout/SignIn/SignWrapper";
+import { useContext } from "react";
+import AuthContext from "../Context/Auth-context";
+import axios from "axios";
+import { httpKey } from "../Utils/RequestURL";
 
 const initialValues = {
-  name: "",
+  email: "",
   password: "",
 };
 
 const SignIn = () => {
+  const { login } = useContext(AuthContext);
   const onSubmit = (values) => {
-    console.log(values);
+    console.log("login");
+    try {
+      axios
+        .post(
+          `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${httpKey}`,
+          {
+            email: values.email,
+            password: values.password,
+            returnSecureToken: true,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          login(res.data.idToken);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+
+    navigate("..");
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string()
-      .required("Requierd")
-      .matches(/^[a-zA-Z0-9_-]{3,16}$/, "Min 3 and Max 16 charachters"),
+    name: Yup.string().required("Requierd").email("Please enter a valid email"),
     password: Yup.string().required("Required"),
   });
   const navigate = useNavigate();
@@ -28,13 +54,9 @@ const SignIn = () => {
       <h2 className="text-center text-white mt-6 text-2xl font-bold">
         Sign In
       </h2>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        validationSchema={validationSchema}
-      >
+      <Formik initialValues={initialValues} onSubmit={onSubmit}>
         <Form className="w-[350px] mb-6">
-          <Input label="Name" type="input" id="name" />
+          <Input label="Email" type="email" id="email" />
           <Input label="Password" type="password" id="password" />
           <div>
             <Button title="Sign In" type="submit" />
