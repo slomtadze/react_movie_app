@@ -1,7 +1,5 @@
 export const imgBase = "https://image.tmdb.org/t/p/original/";
 
-export const httpKey = "AIzaSyBXIHo16pY9pbBM1YG6B4wmsEQk1xjZRww";
-
 export const requests = {
   nowPlaying:
     "https://api.themoviedb.org/3/movie/now_playing?api_key=bb7ee202b42eeb47b5728f147f0a0557&language=en-US&page=1",

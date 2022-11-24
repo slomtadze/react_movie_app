@@ -7,7 +7,6 @@ import SignWrapper from "../Layout/SignIn/SignWrapper";
 import { useContext } from "react";
 import AuthContext from "../Context/Auth-context";
 import axios from "axios";
-import { httpKey } from "../Utils/RequestURL";
 
 const initialValues = {
   email: "",
@@ -17,11 +16,10 @@ const initialValues = {
 const SignIn = () => {
   const { login } = useContext(AuthContext);
   const onSubmit = (values) => {
-    console.log("login");
     try {
       axios
         .post(
-          `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${httpKey}`,
+          `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_REACT_MOVIE_APP_APIKEY}`,
           {
             email: values.email,
             password: values.password,

@@ -5,7 +5,6 @@ import Button from "../Layout/SignIn/Button";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { httpKey } from "../Utils/RequestURL";
 import { useContext } from "react";
 import AuthContext from "../Context/Auth-context";
 
@@ -39,7 +38,7 @@ const SignUp = () => {
     try {
       axios
         .post(
-          `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${httpKey}`,
+          `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_MOVIE_APP_APIKEY}`,
           {
             name: values.name,
             email: values.email,
