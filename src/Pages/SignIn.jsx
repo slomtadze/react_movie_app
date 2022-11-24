@@ -57,7 +57,7 @@ const SignIn = () => {
           <Input label="Email" type="email" id="email" />
           <Input label="Password" type="password" id="password" />
           <div>
-            <Button title="Sign In" type="submit" />
+            <Button title="sign In" type="submit" />
             <Button
               title="Cancel"
               type="button"
@@ -67,7 +67,7 @@ const SignIn = () => {
           <p className="mt-2 text-gray-900">
             Have not account yet?&nbsp;Register&nbsp;
             <Link
-              to="../SignUp"
+              to="../signUp"
               className="text-blue-300 italic hover:text-white"
             >
               Here

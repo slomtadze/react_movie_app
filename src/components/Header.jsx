@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../Context/Auth-context";
 
 const Header = () => {
@@ -32,9 +32,12 @@ const Header = () => {
               <li className="cursor-pointer mr-3 hover:text-red-600 transition: duration-200">
                 Name
               </li>
-              <li className="cursor-pointer mr-3 hover:text-red-600 transition: duration-200">
+              <Link
+                to="../favorites"
+                className="cursor-pointer mr-3 hover:text-red-600 transition: duration-200"
+              >
                 Favorites
-              </li>
+              </Link>
               <li className="cursor-pointer mr-3 hover:text-red-600 transition: duration-200">
                 Profile
               </li>
