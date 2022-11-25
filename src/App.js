@@ -5,12 +5,15 @@ import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
 import Favorites from "./Pages/Favorites";
 import ProtectedRoute from "./components/ProtectedRoute";
+import MovieDetails from "./Pages/MovieDetails";
 function App() {
   return (
     <div className="w-full h-full bg-black">
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />}>
+          <Route path=":movieId" element={<MovieDetails />} />
+        </Route>
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route

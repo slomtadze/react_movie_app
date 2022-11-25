@@ -7,19 +7,24 @@ const Header = () => {
   const { isLoggedIn, logout, idToken } = useContext(AuthContext);
 
   return (
-    <div className="h-[70px] w-full absolute z-10 flex justify-between py-4 px-8">
-      <h1 className="text-blue-700 italic font-sans ">THE MOVIE DB</h1>
-      <div className="h-full">
+    <div className="h-[90px] w-full absolute z-10 flex justify-between py-4 px-8">
+      <h1
+        className="text-red-700 text-2xl font-semibold hover:text-red-800 italic font-sans cursor-pointer"
+        onClick={() => navigate("/")}
+      >
+        THE MOVIE DB
+      </h1>
+      <div className="h-full border-red-800">
         {!isLoggedIn && (
           <div>
             <button
-              className="text-white w-24 h-full rounded-lg mr-2  bg-red-400 hover: duration-300 hover:bg-red-700"
+              className="text-white p-1 uppercase w-24 h-full rounded-lg mr-2  bg-red-400 hover: duration-300 hover:bg-red-700"
               onClick={() => navigate("/SignIn")}
             >
               Sign In
             </button>
             <button
-              className="text-white w-24 h-full rounded-lg bg-red-500 hover: duration-300 hover:bg-red-700"
+              className="text-white p-1 uppercase w-24 h-full rounded-lg bg-red-500 hover: duration-300 hover:bg-red-700"
               onClick={() => navigate("/SignUp")}
             >
               Sign Up
@@ -28,23 +33,18 @@ const Header = () => {
         )}
         {isLoggedIn && (
           <div className="flex justify-around">
-            <ul className="text-white flex mr-4">
-              <li className="cursor-pointer mr-3 hover:text-red-600 transition: duration-200">
-                Name
-              </li>
+            <ul className="text-red-800 text-lg font-bold italic flex mr-4 items-center">
+              <li className="mr-3 cursor-auto ">Welcome ${"saba"}</li>
               <Link
                 to="../favorites"
-                className="cursor-pointer mr-3 hover:text-red-600 transition: duration-200"
+                className="cursor-pointer mr-3 hover:text-white/80 transition: duration-200"
               >
                 Favorites
               </Link>
-              <li className="cursor-pointer mr-3 hover:text-red-600 transition: duration-200">
-                Profile
-              </li>
             </ul>
 
             <button
-              className="text-white w-24 h-full rounded-lg bg-red-500 hover: duration-300 hover:bg-red-700"
+              className="text-white p-1 w-24 h-full rounded-lg bg-red-500 hover: duration-300 hover:bg-red-700"
               onClick={() => logout()}
             >
               Sign Out

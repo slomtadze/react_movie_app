@@ -1,5 +1,7 @@
-const Favorites = () => {
-    return <div>Favorites</div>
-}
+import SignWrapper from "../Layout/SignIn/SignWrapper";
 
-export default Favorites
+const Favorites = () => {
+  return <SignWrapper>Some text</SignWrapper>;
+};
+
+export default Favorites;

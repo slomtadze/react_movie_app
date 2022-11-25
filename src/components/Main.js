@@ -23,7 +23,7 @@ const Main = () => {
   return (
     <div className="w-full h-[600px] text-white">
       <div className="w-full h-full">
-        <div className="absolute w-full h-[600px] bg-gradient-to-r from-black"></div>
+        <div className="absolute w-full h-[600px] bg-gradient-to-r from-black to to-black/20"></div>
         <img
           className="w-full h-full object-cover"
           src={`${imgBase}${movie?.backdrop_path}`}

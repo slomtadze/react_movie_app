@@ -49,32 +49,34 @@ const SignIn = () => {
 
   return (
     <SignWrapper>
-      <h2 className="text-center text-white mt-6 text-2xl font-bold">
-        Sign In
-      </h2>
-      <Formik initialValues={initialValues} onSubmit={onSubmit}>
-        <Form className="w-[350px] mb-6">
-          <Input label="Email" type="email" id="email" />
-          <Input label="Password" type="password" id="password" />
-          <div>
-            <Button title="sign In" type="submit" />
-            <Button
-              title="Cancel"
-              type="button"
-              onClick={() => navigate("/")}
-            />
-          </div>
-          <p className="mt-2 text-gray-900">
-            Have not account yet?&nbsp;Register&nbsp;
-            <Link
-              to="../signUp"
-              className="text-blue-300 italic hover:text-white"
-            >
-              Here
-            </Link>
-          </p>
-        </Form>
-      </Formik>
+      <div className="absolute z-5 bg-black/80 p-4 rounded-lg">
+        <h2 className="text-center text-white mt-6 text-2xl font-bold">
+          Sign In
+        </h2>
+        <Formik initialValues={initialValues} onSubmit={onSubmit}>
+          <Form className="w-[350px] mb-6">
+            <Input label="Email" type="email" id="email" />
+            <Input label="Password" type="password" id="password" />
+            <div>
+              <Button title="Login" type="submit" />
+              <Button
+                title="Cancel"
+                type="button"
+                onClick={() => navigate("/")}
+              />
+            </div>
+            <p className="mt-2 text-white">
+              Have not account yet?&nbsp;Register&nbsp;
+              <Link
+                to="../signUp"
+                className="text-blue-300 italic hover:text-white"
+              >
+                Here
+              </Link>
+            </p>
+          </Form>
+        </Formik>
+      </div>
     </SignWrapper>
   );
 };
