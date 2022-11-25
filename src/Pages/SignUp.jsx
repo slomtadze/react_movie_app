@@ -12,7 +12,7 @@ const initialValues = {
   name: "",
   email: "",
   password: "",
-  repassword: "",
+  confirm: "",
 };
 
 const validationSchema = Yup.object({
@@ -38,7 +38,7 @@ const SignUp = () => {
     try {
       axios
         .post(
-          `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_MOVIE_APP_APIKEY}`,
+          `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_REACT_MOVIE_APP_APIKEY}`,
           {
             name: values.name,
             email: values.email,
@@ -52,8 +52,9 @@ const SignUp = () => {
           }
         )
         .then((response) => {
-          console.log(response);
-          login(response.data.idToken);
+          if (response.ok) {
+            login(response.data.idToken, values.name);
+          }
         });
     } catch (error) {
       console.log(error);

@@ -12,10 +12,15 @@ const initialValues = {
   email: "",
   password: "",
 };
+const validationSchema = Yup.object({
+  email: Yup.string().required("Requierd").email("Please enter a valid email"),
+  password: Yup.string().required("Required"),
+});
 
 const SignIn = () => {
   const { login } = useContext(AuthContext);
   const onSubmit = (values) => {
+    console.log(values);
     try {
       axios
         .post(
@@ -41,10 +46,6 @@ const SignIn = () => {
     navigate("..");
   };
 
-  const validationSchema = Yup.object({
-    name: Yup.string().required("Requierd").email("Please enter a valid email"),
-    password: Yup.string().required("Required"),
-  });
   const navigate = useNavigate();
 
   return (
@@ -53,7 +54,11 @@ const SignIn = () => {
         <h2 className="text-center text-white mt-6 text-2xl font-bold">
           Sign In
         </h2>
-        <Formik initialValues={initialValues} onSubmit={onSubmit}>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validationSchema={validationSchema}
+        >
           <Form className="w-[350px] mb-6">
             <Input label="Email" type="email" id="email" />
             <Input label="Password" type="password" id="password" />

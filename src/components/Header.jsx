@@ -4,7 +4,7 @@ import AuthContext from "../Context/Auth-context";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, logout, idToken } = useContext(AuthContext);
+  const { isLoggedIn, logout, name } = useContext(AuthContext);
 
   return (
     <div className="h-[90px] w-full absolute z-10 flex justify-between py-4 px-8">
@@ -34,7 +34,7 @@ const Header = () => {
         {isLoggedIn && (
           <div className="flex justify-around">
             <ul className="text-red-800 text-lg font-bold italic flex mr-4 items-center">
-              <li className="mr-3 cursor-auto ">Welcome ${"saba"}</li>
+              <li className="mr-3 cursor-auto ">Welcome ${name}</li>
               <Link
                 to="../favorites"
                 className="cursor-pointer mr-3 hover:text-white/80 transition: duration-200"

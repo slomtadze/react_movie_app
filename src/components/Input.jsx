@@ -7,7 +7,7 @@ const Input = ({ type, id, label }) => {
         {label}
       </label>
       <Field
-        className="text-black outline-none rounded px-4 py-[4px] mb-2"
+        className="text-gray-200 outline-none rounded px-4 py-[4px] mb-2 bg-gray-600 italic"
         type={type}
         name={id}
         id={id}
