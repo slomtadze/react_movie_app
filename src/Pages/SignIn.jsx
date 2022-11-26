@@ -19,34 +19,15 @@ const validationSchema = Yup.object({
 
 const SignIn = () => {
   const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
   const onSubmit = (values) => {
-    console.log(values);
     try {
-      axios
-        .post(
-          `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_REACT_MOVIE_APP_APIKEY}`,
-          {
-            email: values.email,
-            password: values.password,
-            returnSecureToken: true,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          login(res.data.idToken);
-        });
+      login(values.email, values.password);
     } catch (error) {
       console.log(error);
     }
-
     navigate("..");
   };
-
-  const navigate = useNavigate();
 
   return (
     <SignWrapper>
@@ -59,7 +40,7 @@ const SignIn = () => {
           onSubmit={onSubmit}
           validationSchema={validationSchema}
         >
-          <Form className="w-[350px] mb-6">
+          <Form className="w-[350px] mb-6 p-4">
             <Input label="Email" type="email" id="email" />
             <Input label="Password" type="password" id="password" />
             <div>

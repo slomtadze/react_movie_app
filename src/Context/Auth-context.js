@@ -1,33 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { auth } from "../firebase.config";
 
 const AuthContext = React.createContext({
-  name: "",
-  idToken: "",
-  isLoggedIn: false,
+  user: {},
+  signUp: () => {},
   login: () => {},
   logout: () => {},
 });
 
 export const AuthContextProvider = (props) => {
-  const [token, setToken] = useState(null);
-  const [name, setName] = useState("");
+  const [user, setUser] = useState({});
 
-  const isLoggedIn = !!token;
+  const signUpHandler = (email, password) => {
+    createUserWithEmailAndPassword(auth, email, password);
+  };
 
-  const loginHandler = (token, name) => {
-    setToken(token);
-    setName(name);
+  const loginHandler = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password);
   };
 
   const logoutHandler = () => {
-    setToken(null);
-    setName("");
+    signOut(auth);
   };
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => {
+      unsubscribe();
+    };
+  });
+
   const contextValue = {
-    name: name,
-    idToken: token,
-    isLoggedIn: isLoggedIn,
+    user: user,
+    signUp: signUpHandler,
     login: loginHandler,
     logout: logoutHandler,
   };
