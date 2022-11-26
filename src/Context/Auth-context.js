@@ -5,7 +5,8 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { auth } from "../firebase.config";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../firebase.config";
 
 const AuthContext = React.createContext({
   user: {},
@@ -17,8 +18,16 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState({});
 
-  const signUpHandler = (email, password) => {
+  const signUpHandler = (email, password, name) => {
     createUserWithEmailAndPassword(auth, email, password);
+    try {
+      setDoc(doc(db, "users", email), {
+        name: name,
+        favorites: [],
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const loginHandler = (email, password) => {
