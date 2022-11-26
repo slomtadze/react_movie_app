@@ -4,7 +4,7 @@ import AuthContext from "../Context/Auth-context";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isLoggedIn, logout, name } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   return (
     <div className="h-[90px] w-full absolute z-10 flex justify-between py-4 px-8">
@@ -15,7 +15,7 @@ const Header = () => {
         THE MOVIE DB
       </h1>
       <div className="h-full border-red-800">
-        {!isLoggedIn && (
+        {!user && (
           <div>
             <button
               className="text-white p-1 uppercase w-24 h-full rounded-lg mr-2  bg-red-400 hover: duration-300 hover:bg-red-700"
@@ -31,10 +31,10 @@ const Header = () => {
             </button>
           </div>
         )}
-        {isLoggedIn && (
+        {user && (
           <div className="flex justify-around">
             <ul className="text-red-800 text-lg font-bold italic flex mr-4 items-center">
-              <li className="mr-3 cursor-auto ">Welcome ${name}</li>
+              <li className="mr-3 cursor-auto ">Welcome</li>
               <Link
                 to="../favorites"
                 className="cursor-pointer mr-3 hover:text-white/80 transition: duration-200"

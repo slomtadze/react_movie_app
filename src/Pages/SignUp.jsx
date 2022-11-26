@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../Layout/SignIn/Button";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import axios from "axios";
 import { useContext } from "react";
 import AuthContext from "../Context/Auth-context";
 
@@ -32,30 +31,11 @@ const validationSchema = Yup.object({
 });
 
 const SignUp = () => {
-  const { login } = useContext(AuthContext);
+  const { signUp } = useContext(AuthContext);
   const navigate = useNavigate();
   const onSubmit = (values) => {
     try {
-      axios
-        .post(
-          `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.REACT_APP_REACT_MOVIE_APP_APIKEY}`,
-          {
-            name: values.name,
-            email: values.email,
-            password: values.password,
-            returnSecureToken: true,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        )
-        .then((response) => {
-          if (response.ok) {
-            login(response.data.idToken, values.name);
-          }
-        });
+      signUp(values.email, values.password);
     } catch (error) {
       console.log(error);
     }
