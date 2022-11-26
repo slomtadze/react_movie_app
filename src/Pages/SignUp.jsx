@@ -35,7 +35,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const onSubmit = (values) => {
     try {
-      signUp(values.email, values.password);
+      signUp(values.email, values.password, values.name);
     } catch (error) {
       console.log(error);
     }
