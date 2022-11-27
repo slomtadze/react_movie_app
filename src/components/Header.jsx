@@ -11,7 +11,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { user, logout } = useContext(AuthContext);
   const getName = async () => {
-    const docRef = doc(db, "users", "saba@gmail.com");
+    const docRef = doc(db, "users", user.email);
     try {
       await getDoc(docRef).then((response) => {
         const name = response.data().name.toLowerCase();
