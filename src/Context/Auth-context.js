@@ -21,6 +21,7 @@ export const AuthContextProvider = (props) => {
   const signUpHandler = (email, password, name) => {
     createUserWithEmailAndPassword(auth, email, password);
     try {
+      console.log("this is try block");
       setDoc(doc(db, "users", email), {
         name: name,
         favorites: [],
