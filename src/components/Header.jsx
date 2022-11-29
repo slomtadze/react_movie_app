@@ -30,7 +30,7 @@ const Header = () => {
   }, [user]);
 
   return (
-    <div className="h-[90px] w-full absolute z-10 flex justify-between py-4 px-8">
+    <div className="h-[10%] w-full absolute z-10 flex justify-between py-4 px-8">
       <h1
         className="text-red-700 text-2xl font-semibold hover:text-red-800 italic font-sans cursor-pointer"
         onClick={() => navigate("/")}

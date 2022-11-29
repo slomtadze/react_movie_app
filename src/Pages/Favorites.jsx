@@ -1,7 +1,42 @@
 import SignWrapper from "../Layout/SignIn/SignWrapper";
+import { db } from "../firebase.config";
+import { doc, getDoc } from "firebase/firestore";
+import FavMovieCart from "../components/FavMovieCart";
+import { useContext, useEffect, useState } from "react";
+import AuthContext from "../Context/Auth-context";
 
 const Favorites = () => {
-  return <SignWrapper>Some text</SignWrapper>;
+  const [movies, setMovies] = useState([]);
+  const { user } = useContext(AuthContext);
+
+  const getMovies = async () => {
+    const docRef = doc(db, "users", user.email);
+    try {
+      await getDoc(docRef).then((response) => {
+        const user = response.data();
+        setMovies(user.favorites);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
+  return (
+    <SignWrapper>
+      <div className="flex items-end h-full w-full absolute z-5">
+        <div className="h-[90%] h-full w-full">
+          {movies &&
+            movies.map((movie) => (
+              <FavMovieCart key={movie.id} movie={movie} />
+            ))}
+        </div>
+      </div>
+    </SignWrapper>
+  );
 };
 
 export default Favorites;
