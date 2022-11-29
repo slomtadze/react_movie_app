@@ -16,7 +16,7 @@ const AuthContext = React.createContext({
 });
 
 export const AuthContextProvider = (props) => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   const signUpHandler = (email, password, name) => {
     createUserWithEmailAndPassword(auth, email, password);
