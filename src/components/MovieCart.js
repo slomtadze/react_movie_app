@@ -26,7 +26,7 @@ const MovieCart = ({ movie }) => {
   };
 
   useEffect(() => {
-    if (user.email) {
+    if (user) {
       const docRef = doc(db, "users", user.email);
       getDoc(docRef).then((response) => {
         const favMovies = response.data().favorites;

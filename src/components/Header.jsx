@@ -5,18 +5,22 @@ import AuthContext from "../Context/Auth-context";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { useState } from "react";
+import Spinner from "./Spinner";
 
 const Header = () => {
   const [name, setName] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { user, logout } = useContext(AuthContext);
   const getName = async () => {
+    setIsLoading(true);
     const docRef = doc(db, "users", user.email);
     try {
       await getDoc(docRef).then((response) => {
         const name = response.data().name.toLowerCase();
         const userName = name.charAt(0).toUpperCase() + name.slice(1);
         setName(userName);
+        setIsLoading(false);
       });
     } catch (error) {
       alert(error.message);
@@ -30,9 +34,9 @@ const Header = () => {
   }, [user]);
 
   return (
-    <div className="h-[10%] w-full absolute z-10 flex justify-between py-4 px-8">
+    <div className="bg-black/30 h-[10%] w-full absolute z-10 flex justify-between py-4 px-8">
       <h1
-        className="text-red-700 text-2xl font-semibold hover:text-red-800 italic font-sans cursor-pointer"
+        className="text-white text-2xl font-semibold hover:text-red-800 italic font-sans cursor-pointer"
         onClick={() => navigate("/")}
       >
         THE MOVIE DB
@@ -56,8 +60,10 @@ const Header = () => {
         )}
         {user && (
           <div className="flex justify-around">
-            <ul className="text-red-800 text-lg font-bold italic flex mr-4 items-center">
-              <li className="mr-3 cursor-auto ">Welcome {name}</li>
+            <ul className="text-white text-lg font-bold italic flex mr-4 items-center">
+              <li className="mr-3 cursor-auto ">
+                {isLoading ? <Spinner /> : `Welcome ${name}`}
+              </li>
               <Link
                 to="../favorites"
                 className="cursor-pointer mr-3 hover:text-white/80 transition: duration-200"
