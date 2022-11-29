@@ -20,13 +20,13 @@ const validationSchema = Yup.object({
 const SignIn = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     try {
-      login(values.email, values.password);
+      await login(values.email, values.password);
+      navigate("..");
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
-    navigate("..");
   };
 
   return (
@@ -40,7 +40,7 @@ const SignIn = () => {
           onSubmit={onSubmit}
           validationSchema={validationSchema}
         >
-          <Form className="w-[350px] mb-6 p-4">
+          <Form className="w-[350px] mb-6 px-4 pt-4">
             <Input label="Email" type="email" id="email" />
             <Input label="Password" type="password" id="password" />
             <div>
