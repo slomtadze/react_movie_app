@@ -1,15 +1,42 @@
-import { Fragment, useContext, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { imgBase } from "../Utils/RequestURL";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../Context/Auth-context";
 import { db } from "../firebase.config";
-import { doc, updateDoc, arrayUnion, arrayRemove } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
+import { async } from "@firebase/util";
 
 const MovieCart = ({ movie }) => {
   const [isLiked, setIsLiked] = useState(false);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const getMovies = (movie) => {
+    const docRef = doc(db, "users", user.email);
+    getDoc(docRef).then((response) => {
+      return response.data();
+    });
+  };
+
+  useEffect(() => {
+    if (user.email) {
+      const docRef = doc(db, "users", user.email);
+      getDoc(docRef).then((response) => {
+        const favMovies = response.data().favorites;
+        const movieIsFav = favMovies.find((item) => item.id === movie.id);
+        if (movieIsFav) {
+          setIsLiked(true);
+        }
+      });
+    }
+  }, [user]);
 
   const addToFavorites = async (movieTitle) => {
     const userRef = doc(db, "users", user.email);
@@ -33,6 +60,7 @@ const MovieCart = ({ movie }) => {
         addToFavorites(movie);
       }
     }
+    console.log(user);
     setIsLiked((isLiked) => !isLiked);
   };
 

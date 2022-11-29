@@ -1,8 +1,10 @@
+import { imgBase } from "../Utils/RequestURL";
+
 const FavMovieCart = (movie) => {
   return (
     <div>
-      <img />
-      <h3></h3>
+      <img src={`${imgBase}${movie.backdrop_path}`} />
+      <h3 className="text-white">test</h3>
     </div>
   );
 };
