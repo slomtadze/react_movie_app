@@ -28,12 +28,12 @@ const MovieDetails = () => {
   return (
     <SignWrapper>
       <div className="w-full h-full flex items-end absolute z-5">
-        <div className="w-full h-[90%] flex flex-col text-white px-10 font-mono">
-          <div className="flex bg-black/50 rounded-lg mb-4">
+        <div className="w-full h-[90%] flex flex-col text-white px-10 font-mono object-contain border-red-900">
+          <div className="flex bg-black/40 rounded-lg mb-4">
             <img
               src={`${imgBase}${movie.backdrop_path}`}
               alt={movie.title}
-              className="w-1/2 h-auto rounded-lg"
+              className="w-1/3 h-auto rounded-lg"
             />
             <div className="h-2/3 flex flex-col justify-between w-1/2 px-8">
               <h3 className="text-2xl">{movie.title}</h3>
@@ -60,14 +60,16 @@ const MovieDetails = () => {
               </p>
             </div>
           </div>
-          <div className="w-full flex justify-between flex-wrap bg-black/50 rounded">
+          <div className="w-full flex justify-start items-center flex-wrap rounded">
             {images &&
               images.map((image) => (
-                <img
-                  src={`${imgBase}${image.file_path}`}
-                  alt={movie.title}
-                  className="w-[200px] h-auto mb-4 rounded"
-                />
+                <div className="w-1/5 p-1">
+                  <img
+                    src={`${imgBase}${image.file_path}`}
+                    alt={movie.title}
+                    className="w-full h-full"
+                  />
+                </div>
               ))}
           </div>
         </div>
