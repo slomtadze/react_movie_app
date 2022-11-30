@@ -11,6 +11,4 @@ export const requests = {
     "https://api.themoviedb.org/3/movie/popular?api_key=bb7ee202b42eeb47b5728f147f0a0557&language=en-US&page=1",
   topRated:
     "https://api.themoviedb.org/3/movie/top_rated?api_key=bb7ee202b42eeb47b5728f147f0a0557&language=en-US&page=1",
-  upComing:
-    "https://api.themoviedb.org/3/movie/upcoming?api_key=bb7ee202b42eeb47b5728f147f0a0557&language=en-US&page=1",
 };

@@ -1,24 +1,75 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SignWrapper from "../Layout/SignIn/SignWrapper";
-import { useLocation, useParams } from "react-router-dom";
+import { imgBase } from "../Utils/RequestURL";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const MovieDetails = () => {
+  const [images, setImages] = useState([]);
   const location = useLocation();
   const movie = location.state.movie;
-  console.log(movie.title);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${movie.id}/images?api_key=bb7ee202b42eeb47b5728f147f0a0557&`
+      )
+      .then((response) => {
+        const rndmIndex = Math.floor(Math.random() * 29);
+        const slicedImgs = response.data.backdrops.slice(
+          rndmIndex,
+          rndmIndex + 10
+        );
+        console.log(response.data, slicedImgs);
+        setImages(slicedImgs);
+      });
+  }, [movie.id]);
+
   return (
     <SignWrapper>
-      <div className="w-full h-full flex items-end">
-        <div className="w-full h-[90%] flex flex-col">
-          <div className="border-solid border-red-500">
-            <img />
-            <div></div>
+      <div className="w-full h-full flex items-end absolute z-5">
+        <div className="w-full h-[90%] flex flex-col text-white px-10 font-mono">
+          <div className="flex bg-black/50 rounded-lg mb-4">
+            <img
+              src={`${imgBase}${movie.backdrop_path}`}
+              alt={movie.title}
+              className="w-1/2 h-auto rounded-lg"
+            />
+            <div className="h-2/3 flex flex-col justify-between w-1/2 px-8">
+              <h3 className="text-2xl">{movie.title}</h3>
+              <p className="text-white/80">
+                Language -{" "}
+                <span className="text-white/100">
+                  {movie.original_language.toUpperCase()}
+                </span>
+              </p>
+              <p className="text-white/80">
+                IMBD Rate -{" "}
+                <span className="text-white/100">{movie.vote_average}</span>
+              </p>
+              <p className="text-white/80">
+                Release Date{" "}
+                <span className="text-white/100">{movie.release_date}</span>
+              </p>
+              <p className="text-white/80">
+                Review:
+                <br />
+                <span className="text-white/100 font-mono text-red-300">
+                  {movie.overview}
+                </span>
+              </p>
+            </div>
           </div>
-          <div className="border-solid border-red-500">
-            <h3></h3>
-            <p></p>
+          <div className="w-full flex justify-between flex-wrap bg-black/50 rounded">
+            {images &&
+              images.map((image) => (
+                <img
+                  src={`${imgBase}${image.file_path}`}
+                  alt={movie.title}
+                  className="w-[200px] h-auto mb-4 rounded"
+                />
+              ))}
           </div>
-          <div className="border-solid border-red-500"></div>
         </div>
       </div>
     </SignWrapper>
