@@ -11,9 +11,8 @@ function App() {
     <div className="w-full h-full bg-black">
       <Header />
       <Routes>
-        <Route path="/" element={<Home />}>
-          <Route path=":movieId" element={<MovieDetails />} />
-        </Route>
+        <Route path="/" element={<Home />} />
+        <Route path="details" element={<MovieDetails />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route
