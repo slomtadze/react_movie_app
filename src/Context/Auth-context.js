@@ -36,6 +36,7 @@ export const AuthContextProvider = (props) => {
 
   const logoutHandler = () => {
     signOut(auth);
+    setUser(null);
   };
 
   useEffect(() => {
