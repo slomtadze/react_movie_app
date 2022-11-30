@@ -18,13 +18,6 @@ const MovieCart = ({ movie }) => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const getMovies = (movie) => {
-    const docRef = doc(db, "users", user.email);
-    getDoc(docRef).then((response) => {
-      return response.data();
-    });
-  };
-
   useEffect(() => {
     if (user) {
       const docRef = doc(db, "users", user.email);
@@ -35,6 +28,8 @@ const MovieCart = ({ movie }) => {
           setIsLiked(true);
         }
       });
+    } else {
+      setIsLiked(false);
     }
   }, [user]);
 
@@ -59,9 +54,10 @@ const MovieCart = ({ movie }) => {
       } else {
         addToFavorites(movie);
       }
+      setIsLiked((isLiked) => !isLiked);
+    } else {
+      alert("Sign in");
     }
-    console.log(user);
-    setIsLiked((isLiked) => !isLiked);
   };
 
   return (
