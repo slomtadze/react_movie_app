@@ -36,7 +36,7 @@ const Header = () => {
   return (
     <div className="bg-black/30 h-[10%] w-full absolute z-10 flex justify-between py-4 px-8">
       <h1
-        className="text-white text-2xl font-semibold hover:text-red-800 italic font-sans cursor-pointer"
+        className="text-white text-2xl font-semibold transition: duration-300 hover:text-red-800 italic font-sans cursor-pointer"
         onClick={() => navigate("/")}
       >
         THE MOVIE DB

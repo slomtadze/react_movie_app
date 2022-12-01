@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import Button from "../Layout/SignIn/Button";
 import SignWrapper from "../Layout/SignIn/SignWrapper";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../Context/Auth-context";
 import axios from "axios";
 
@@ -18,15 +18,12 @@ const validationSchema = Yup.object({
 });
 
 const SignIn = () => {
+  const [error, setError] = useState(null);
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const onSubmit = async (values) => {
-    try {
-      await login(values.email, values.password);
-      navigate("..");
-    } catch (error) {
-      console.log(error.message);
-    }
+  const onSubmit = (values) => {
+    login(values.email, values.password, navigate, setError);
+    //navigate("..");
   };
 
   return (
@@ -40,9 +37,14 @@ const SignIn = () => {
           onSubmit={onSubmit}
           validationSchema={validationSchema}
         >
-          <Form className="w-[350px] mb-6 px-4 pt-4">
+          <Form className="w-[350px] mb-6 px-4 pt-4 relative">
             <Input label="Email" type="email" id="email" />
             <Input label="Password" type="password" id="password" />
+            {error && (
+              <div className="absolute text-red-800 italic bottom-20 w-1/2">
+                {error}
+              </div>
+            )}
             <div>
               <Button title="Login" type="submit" />
               <Button

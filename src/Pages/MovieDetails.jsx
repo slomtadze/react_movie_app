@@ -15,26 +15,29 @@ const MovieDetails = () => {
         `https://api.themoviedb.org/3/movie/${movie.id}/images?api_key=bb7ee202b42eeb47b5728f147f0a0557&`
       )
       .then((response) => {
-        const rndmIndex = Math.floor(Math.random() * 29);
+        const rndmIndex = Math.floor(Math.random() * 5);
         const slicedImgs = response.data.backdrops.slice(
           rndmIndex,
           rndmIndex + 10
         );
-        console.log(response.data, slicedImgs);
+
         setImages(slicedImgs);
       });
   }, [movie.id]);
 
   return (
     <SignWrapper>
-      <div className="w-full h-full flex items-end absolute z-5">
+      <div className="w-screen h-screen flex items-end absolute z-5">
         <div className="w-full h-[90%] flex flex-col text-white px-10 font-mono object-contain border-red-900">
           <div className="flex bg-black/40 rounded-lg mb-4">
-            <img
-              src={`${imgBase}${movie.backdrop_path}`}
-              alt={movie.title}
-              className="w-1/3 h-auto rounded-lg"
-            />
+            <div className="w-1/2 h-full rounded">
+              <img
+                src={`${imgBase}${movie.backdrop_path}`}
+                alt={movie.title}
+                className="h-full w-full"
+              />
+            </div>
+
             <div className="h-2/3 flex flex-col justify-between w-1/2 px-8">
               <h3 className="text-2xl">{movie.title}</h3>
               <p className="text-white/80">

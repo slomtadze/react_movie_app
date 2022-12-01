@@ -30,8 +30,14 @@ export const AuthContextProvider = (props) => {
     }
   };
 
-  const loginHandler = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password);
+  const loginHandler = (email, password, navigate, setError) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        navigate("..");
+      })
+      .catch((error) => {
+        setError(error.code);
+      });
   };
 
   const logoutHandler = () => {

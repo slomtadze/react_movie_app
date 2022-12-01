@@ -65,7 +65,7 @@ const MovieCart = ({ movie }) => {
       <div className="w-[240px] inline-block cursor-pointer relative p-1">
         <img src={`${imgBase}${movie.backdrop_path}`} alt={movie.title} />
         <div
-          className="h-full w-full absolute left-0 top-0 hover:bg-black/80 opacity-0 hover:opacity-100 text-white"
+          className="h-full w-full absolute left-0 top-0 transition: duration-200 hover:bg-black/70 opacity-0 hover:opacity-100 text-white"
           onClick={() => navigate("/details", { state: { movie } })}
         >
           <p className="white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center">
