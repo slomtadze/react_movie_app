@@ -55,30 +55,37 @@ const MovieCart = ({ movie }) => {
         addToFavorites(movie);
       }
       setIsLiked((isLiked) => !isLiked);
+      return;
     } else {
       alert("Sign in");
+      return;
+    }
+  };
+  const navigateDetails = (e) => {
+    if (e.target.innerHTML.length !== 0 && e.target.innerHTML.length < 500) {
+      navigate("/details", { state: { movie } });
     }
   };
 
   return (
     <Fragment>
-      <div className="w-[240px] inline-block cursor-pointer relative p-1">
+      <div className="w-[240px] inline-block cursor-pointer relative m-1">
         <img src={`${imgBase}${movie.backdrop_path}`} alt={movie.title} />
         <div
-          className="h-full w-full absolute left-0 top-0 transition: duration-200 hover:bg-black/70 opacity-0 hover:opacity-100 text-white"
-          onClick={() => navigate("/details", { state: { movie } })}
+          className="h-full w-full absolute left-0 top-0 z-10 transition: duration-200 hover:bg-black/60 opacity-0 hover:opacity-100 text-white"
+          onClick={navigateDetails}
         >
           <p className="white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center">
             {movie.title}
           </p>
           {isLiked ? (
             <AiFillHeart
-              className="absolute left-3 top-3"
+              className="absolute left-3 top-3 z-100"
               onClick={toggleLike}
             />
           ) : (
             <AiOutlineHeart
-              className="absolute left-3 top-3"
+              className="absolute left-3 top-3 z-100"
               onClick={toggleLike}
             />
           )}
