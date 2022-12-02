@@ -79,8 +79,8 @@ const MovieCart = ({ movie }) => {
           onClick={navigateDetails}
         >
           {alertModal && (
-            <div className="absolute animate-bounce border-gray-300 bg-white/70 text-sm italic text-gray-700 py-1 px-4 rounded-lg top-1 left-8">
-              Sign in to add Favorites
+            <div className="absolute animate-bounce border-gray-500 bg-white/70 text-sm italic text-gray-700 py-1 px-4 rounded-lg top-1 left-8">
+              Sign In to add Favorites
             </div>
           )}
           <p className="white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center">
