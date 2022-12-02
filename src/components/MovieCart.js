@@ -11,10 +11,10 @@ import {
   arrayUnion,
   arrayRemove,
 } from "firebase/firestore";
-import { async } from "@firebase/util";
 
 const MovieCart = ({ movie }) => {
   const [isLiked, setIsLiked] = useState(false);
+  const [alertModal, setAlertModal] = useState(false);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -57,7 +57,10 @@ const MovieCart = ({ movie }) => {
       setIsLiked((isLiked) => !isLiked);
       return;
     } else {
-      alert("Sign in");
+      setAlertModal(true);
+      setTimeout(() => {
+        setAlertModal(false);
+      }, 2000);
       return;
     }
   };
@@ -75,17 +78,22 @@ const MovieCart = ({ movie }) => {
           className="h-full w-full absolute left-0 top-0 z-10 transition: duration-200 hover:bg-black/60 opacity-0 hover:opacity-100 text-white"
           onClick={navigateDetails}
         >
+          {alertModal && (
+            <div className="absolute animate-bounce border-gray-300 bg-white/70 text-sm italic text-gray-700 py-1 px-4 rounded-lg top-1 left-8">
+              Sign in to add Favorites
+            </div>
+          )}
           <p className="white-space-normal text-xs md:text-sm font-bold flex justify-center items-center h-full text-center">
             {movie.title}
           </p>
           {isLiked ? (
             <AiFillHeart
-              className="absolute left-3 top-3 z-100"
+              className="absolute left-3 top-3 "
               onClick={toggleLike}
             />
           ) : (
             <AiOutlineHeart
-              className="absolute left-3 top-3 z-100"
+              className="absolute left-3 top-3 "
               onClick={toggleLike}
             />
           )}
