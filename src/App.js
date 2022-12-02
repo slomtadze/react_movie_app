@@ -8,13 +8,13 @@ import Favorites from "./Pages/Favorites";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MovieDetails from "./Pages/MovieDetails";
 
-
 function App() {
   return (
     <div className="w-full h-full bg-black/90">
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/react_movie_app" element={<Home />} />
         <Route path="details" element={<MovieDetails />} />
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signUp" element={<SignUp />} />
@@ -27,7 +27,6 @@ function App() {
           }
         />
       </Routes>
-      
     </div>
   );
 }
