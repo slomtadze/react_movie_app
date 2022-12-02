@@ -34,9 +34,9 @@ const Header = () => {
   }, [user]);
 
   return (
-    <div className="bg-black/30 h-[10%] w-full absolute z-10 flex justify-between py-4 px-8">
+    <div className="bg-black/30 h-[10%] w-full absolute z-10 flex justify-between py-4 px-8 sm:px-4">
       <h1
-        className="text-white text-2xl font-semibold transition: duration-300 hover:text-red-800 italic font-sans cursor-pointer"
+        className="text-white text-2xl sm:text-sm font-semibold transition: duration-300 hover:text-red-800 italic font-sans cursor-pointer"
         onClick={() => navigate("/")}
       >
         THE MOVIE DB
@@ -59,21 +59,21 @@ const Header = () => {
           </div>
         )}
         {user && (
-          <div className="flex justify-around">
-            <ul className="text-white text-lg font-bold italic flex mr-4 items-center">
-              <li className="mr-3 cursor-auto ">
+          <div className="flex justify-around sm:justify-between">
+            <ul className="text-white text-lg sm:text-[10px] font-bold italic mr-4 flex items-center">
+              <li className="mr-3 sm:mr-1 cursor-auto ">
                 {isLoading ? <Spinner /> : `Welcome ${name}`}
               </li>
               <Link
                 to="../favorites"
-                className="cursor-pointer mr-3 hover:text-white/80 transition: duration-200"
+                className="cursor-pointer mr-3 sm:mr-1 hover:text-white/80 transition: duration-200"
               >
                 Favorites
               </Link>
             </ul>
 
             <button
-              className="text-white p-1 w-24 h-full rounded-lg bg-red-500 hover: duration-300 hover:bg-red-700"
+              className="text-white sm:text-sm p-1 w-24 sm:w-20 rounded-lg bg-red-500 hover: duration-300 hover:bg-red-700"
               onClick={() => logout()}
             >
               Sign Out
