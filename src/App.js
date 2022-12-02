@@ -8,6 +8,7 @@ import Favorites from "./Pages/Favorites";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MovieDetails from "./Pages/MovieDetails";
 
+
 function App() {
   return (
     <div className="w-full h-full bg-black/90">
@@ -26,6 +27,7 @@ function App() {
           }
         />
       </Routes>
+      
     </div>
   );
 }
