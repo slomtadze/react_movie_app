@@ -16,7 +16,7 @@ const Input = ({ type, id, label }) => {
       <ErrorMessage
         name={id}
         render={(errorMsg) => (
-          <span className="absolute text-sm text-red-500 bottom-2 font-mono italic">
+          <span className="absolute text-sm sm:text-[10px] text-red-500 bottom-2 font-mono italic">
             {errorMsg.toLowerCase()}
           </span>
         )}
