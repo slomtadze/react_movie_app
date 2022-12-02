@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import uniqid from "uniqid";
 import SignWrapper from "../Layout/SignIn/SignWrapper";
 import { imgBase } from "../Utils/RequestURL";
 import { useLocation } from "react-router-dom";
@@ -9,6 +10,7 @@ const MovieDetails = () => {
   const [overview, setOverview] = useState("");
   const location = useLocation();
   const movie = location.state.movie;
+  console.log(images);
 
   useEffect(() => {
     axios
@@ -49,22 +51,6 @@ const MovieDetails = () => {
       setOverview(movie.overview);
     }
   }, []);
-
-  const review = (string, limit = 120) => {
-    const temp = [];
-
-    if (string.length > limit) {
-      string.split(" ").reduce((acc, cur) => {
-        if (acc + cur.length <= limit) {
-          temp.push(cur);
-        }
-        return acc + cur.length;
-      }, 0);
-      return `${temp.join(" ")}`;
-    } else {
-      return string;
-    }
-  };
 
   return (
     <SignWrapper>
@@ -109,7 +95,7 @@ const MovieDetails = () => {
           <div className="w-full flex justify-start items-center flex-wrap rounded">
             {images &&
               images.map((image) => (
-                <div className="w-1/5 md:w-1/3 p-1">
+                <div key={uniqid("img")} className="w-1/5 md:w-1/3 p-1">
                   <img
                     src={`${imgBase}${image.file_path}`}
                     alt={movie.title}

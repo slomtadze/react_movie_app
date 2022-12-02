@@ -1,3 +1,4 @@
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "../src/components/Header";
 import Home from "../src/Pages/Home";
@@ -6,6 +7,7 @@ import SignUp from "./Pages/SignUp";
 import Favorites from "./Pages/Favorites";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MovieDetails from "./Pages/MovieDetails";
+
 function App() {
   return (
     <div className="w-full h-full bg-black/90">

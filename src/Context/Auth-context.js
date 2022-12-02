@@ -18,8 +18,14 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState(null);
 
-  const signUpHandler = (email, password, name) => {
-    createUserWithEmailAndPassword(auth, email, password);
+  const signUpHandler = async (email, password, name, navigate, setError) => {
+    await createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate("..");
+      })
+      .catch((error) => {
+        setError(error.code);
+      });
     try {
       setDoc(doc(db, "users", email), {
         name: name,
@@ -30,9 +36,9 @@ export const AuthContextProvider = (props) => {
     }
   };
 
-  const loginHandler = (email, password, navigate, setError) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+  const loginHandler = async (email, password, navigate, setError) => {
+    await signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
         navigate("..");
       })
       .catch((error) => {

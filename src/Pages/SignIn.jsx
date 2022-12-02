@@ -6,7 +6,6 @@ import Button from "../Layout/SignIn/Button";
 import SignWrapper from "../Layout/SignIn/SignWrapper";
 import { useContext, useState } from "react";
 import AuthContext from "../Context/Auth-context";
-import axios from "axios";
 
 const initialValues = {
   email: "",
@@ -23,7 +22,6 @@ const SignIn = () => {
   const navigate = useNavigate();
   const onSubmit = (values) => {
     login(values.email, values.password, navigate, setError);
-    //navigate("..");
   };
 
   return (

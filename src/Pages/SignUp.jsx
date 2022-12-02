@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../Layout/SignIn/Button";
 import { Form, Formik } from "formik";
 import * as Yup from "yup";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../Context/Auth-context";
 
 const initialValues = {
@@ -32,14 +32,10 @@ const validationSchema = Yup.object({
 
 const SignUp = () => {
   const { signUp } = useContext(AuthContext);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
   const onSubmit = (values) => {
-    try {
-      signUp(values.email, values.password, values.name);
-    } catch (error) {
-      console.log(error);
-    }
-    navigate("..");
+    signUp(values.email, values.password, values.name, navigate, setError);
   };
 
   return (
@@ -53,11 +49,16 @@ const SignUp = () => {
           onSubmit={onSubmit}
           validationSchema={validationSchema}
         >
-          <Form className="w-[450px] sm:w-[350px] px-8 py-4">
+          <Form className="w-[450px] sm:w-[350px] px-8 py-4 relative">
             <Input type="text" id="name" label="Name" />
             <Input type="email" id="email" label="Email" />
             <Input type="password" id="password" label="Password" />
             <Input type="password" id="confirm" label="Confirm Password" />
+            {error && (
+              <div className="absolute text-red-800 italic bottom-28 w-1/2">
+                {error}
+              </div>
+            )}
             <div className="pb-2">
               <Button title="Confirm" type="submit" />
               <Button

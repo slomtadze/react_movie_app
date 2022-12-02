@@ -29,7 +29,7 @@ const Favorites = () => {
     <SignWrapper>
       <div className="flex items-end h-full w-full absolute z-5">
         <div className="h-[90%] h-full w-full px-6 ">
-          <div className="h-full w-full drop-shadow-2xl overflow-y-scroll md:flex md:flex-col md:items-center">
+          <div className="h-full w-full drop-shadow-2xl overflow-y-scroll scrollbar-hide md:flex md:flex-col md:items-center">
             {movies &&
               movies.map((movie) => <MovieCart key={movie.id} movie={movie} />)}
           </div>
