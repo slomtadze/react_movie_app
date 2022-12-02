@@ -17,13 +17,13 @@ const initialValues = {
 const validationSchema = Yup.object({
   name: Yup.string()
     .required("Required")
-    .matches(/^[a-zA-Z0-9_-]{3,16}$/, "Name must have 3-16 charachters"),
+    .matches(/^[a-zA-Z0-9_-]{3,16}$/, "Min 3 / Max 16 charachters"),
   email: Yup.string().required("Required").email("Please enter a valid Email"),
   password: Yup.string()
     .required("Required")
     .matches(
       /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-      "Passwor must have min 8 charachters and include number and letter"
+      "Min 8 charachters (number/letter)"
     ),
   confirm: Yup.string()
     .required("Required")
